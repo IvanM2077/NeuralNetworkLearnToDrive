@@ -1,0 +1,1 @@
+#Una lógica para generar un mapa al azar de principio a fin
