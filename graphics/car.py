@@ -15,3 +15,5 @@ class Car:
         self.y += self.speed
 
     def move(self):
+        self.x += self.speed
+        self.y += self.speed

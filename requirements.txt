@@ -1,6 +1,6 @@
-python == 3.10.1
-numpy
+--extra-index-url https://download.pytorch.org/whl/cu121
+pygame
 pandas
-
-
-
+numpy
+matplotlib
+torch
