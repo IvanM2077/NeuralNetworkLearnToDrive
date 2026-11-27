@@ -59,7 +59,28 @@ class TestSimulation:
 
     def handle_input(self) -> None:
         keys = pygame.key.get_pressed()
-        force_magnitude = 80000.0
+
+        base_force = 80000.0
+        force_increase_per_sec = 20000.0
+        max_force = 200000.0
+
+        moving = (
+                keys[pygame.K_RIGHT] or keys[pygame.K_d] or
+                keys[pygame.K_LEFT] or keys[pygame.K_a] or
+                keys[pygame.K_DOWN] or keys[pygame.K_s] or
+                keys[pygame.K_UP] or keys[pygame.K_w]
+        )
+
+        if moving:
+            now = pygame.time.get_ticks()
+            if self.move_start_time is None:
+                self.move_start_time = now
+            elapsed_seconds = (now - self.move_start_time) / 1000.0
+        else:
+            self.move_start_time = None
+            elapsed_seconds = 0.0
+
+        force_magnitude = min(base_force + (elapsed_seconds * force_increase_per_sec), max_force)
 
         fx, fy = 0.0, 0.0
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
